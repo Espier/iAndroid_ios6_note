@@ -1,7 +1,5 @@
 package org.espier.inotes.view;
 
-import java.util.Date;
-
 import org.espier.inotes.R;
 
 import android.content.Context;
@@ -16,11 +14,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class MyListView extends ListView implements OnScrollListener {
 	private final static int RELEASE_To_REFRESH = 0;
@@ -99,6 +94,8 @@ public class MyListView extends ListView implements OnScrollListener {
 	@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 	}
+
+
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -271,4 +268,5 @@ public class MyListView extends ListView implements OnScrollListener {
 //		lastUpdatedTextView.setText("this is in MyListView:" + new Date().toLocaleString());
 		super.setAdapter(adapter);
 	}
+
 }

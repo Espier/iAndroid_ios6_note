@@ -13,22 +13,28 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-         <!-- <activity
+        <activity
             android:name="org.espier.inotes.activity.NoteListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>  -->
-            <activity
+             <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+           <!--  <activity
             android:name="org.espier.inotes.activity.TestProviderActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> 
+        </activity>  -->
         <!-- <activity
             android:name="org.espier.inotes.activity.DbTestActivity"
             android:label="@string/app_name" >
@@ -41,11 +47,32 @@
             android:name="org.espier.inotes.activity.EditNoteActivity"
             >
         </activity>
+         <activity 
+            android:name="org.espier.inotes.widget.WidgetActivity"
+            >
+            <intent-filter>  
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />  
+            </intent-filter> 
+        </activity>
+        <receiver android:name="org.espier.inotes.widget.NoteWidget">  
+            <intent-filter>  
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="org.espiser.inotes.weidgt.up"/>
+   				<action android:name="org.espiser.inotes.weidgt.down"/> 
+   				<action android:name="org.espiser.inotes.weidgt.write"/>
+            </intent-filter>  
+            <meta-data android:name="android.appwidget.provider"  
+                android:resource="@xml/note_wiget" />  
+        </receiver>
         <provider 
-            android:name="org.espier.inotes.contentprovider.NoteContentProvider"
+            android:name="org.espier.inotes.provider.NoteContentProvider"
             android:authorities="org.espier.inotes" 
             >
         </provider>
+        <service android:name="org.espier.inotes.service.NoteService"></service>
+        <meta-data 
+            android:name="android.app.default_searchable" 
+            android:value="org.espier.inotes.activity.NoteListActivity" /> 
     </application>
 
 </manifest>

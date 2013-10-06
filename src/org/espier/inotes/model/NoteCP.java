@@ -1,5 +1,6 @@
 package org.espier.inotes.model;
 
+import android.app.SearchManager;
 import android.net.Uri;
 
 public class NoteCP {
@@ -27,5 +28,9 @@ public class NoteCP {
 
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTOHORITY
 			+ "/" + TABLE_NOTES);
+
+	// 将被容暴露给系统
+	public static final Uri SEARCH_URI = Uri.parse("content://" + AUTOHORITY
+			+ "/" + SearchManager.SUGGEST_URI_PATH_QUERY);
 
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="80dp"
     android:orientation="horizontal" 
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     >
     <TextView 
         android:id="@+id/tv_content"
@@ -19,15 +19,7 @@
   		android:textColor="@color/zong"
   		android:layout_centerVertical="true"
         />
-    <ImageButton 
-        android:id="@+id/ib_delete"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:background="@color/gold"
-        android:layout_centerVertical="true"
-        android:visibility="invisible"
-        />
+   
     <ImageView 
         android:id="@+id/iv_arrow"
         android:layout_width="wrap_content"
@@ -37,11 +29,25 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
         />
+     <TextView 
+        android:id="@+id/tv_delete"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/delete"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:text="Delete"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/iv_arrow"
+        />
     <TextView 
         android:id="@+id/tv_time"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_toLeftOf="@id/ib_delete"
+        android:layout_toLeftOf="@id/tv_delete"
         android:text="2012-5-18"
         android:textSize="18sp"
         android:textColor="@color/light_blue"

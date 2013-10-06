@@ -3,13 +3,14 @@ package org.espier.inotes.db;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.espier.inotes.model.Note;
+import org.espier.inotes.model.NoteCP;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import org.espier.inotes.model.Note;
-import org.espier.inotes.model.NoteCP;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
@@ -90,5 +91,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		}
 		db.close();
 		return isUpdate;
+	}
+
+	public List<Note> searchNotes(String keyWords){
+		SQLiteDatabase db=this.getReadableDatabase();
+		String sql = "select * from " + NoteCP.TABLE_NOTES + " where "
+				+ NoteCP.NOTE_CONTENT + " like '%" + keyWords + "%'";
+		Cursor cursor = db.rawQuery(sql, null);
+		List<Note> notes = new ArrayList<Note>();
+		for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+			int id = cursor.getInt(cursor.getColumnIndex("note_id"));
+			String content = cursor.getString(cursor
+					.getColumnIndex("note_content"));
+			String createTime = cursor.getString(cursor
+					.getColumnIndex("note_create_time"));
+			Note note = new Note(id, content, createTime);
+			notes.add(note);
+		}
+		cursor.close();
+		return notes;
+
 	}
 }

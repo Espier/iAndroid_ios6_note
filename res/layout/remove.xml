@@ -3,21 +3,21 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    android:id="@+id/ll_container"
+    android:id="@+id/ll_remove"
     android:gravity="center"
     >
     <ImageView 
         android:id="@+id/iv_remove_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_trash_top"
+        android:src="@drawable/ic_trash_top"
         />
     <ImageView 
         android:id="@+id/iv_remove_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_trash_bottom"
-        android:layout_marginTop="-4dp"
+        android:src="@drawable/ic_trash_bottom"
+        android:layout_marginTop="-8dp"
         />
 	
 </LinearLayout>

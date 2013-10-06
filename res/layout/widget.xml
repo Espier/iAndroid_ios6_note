@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+   	<LinearLayout 
+   	    android:layout_height="wrap_content"
+   	    android:layout_width="match_parent"
+   	    android:background="@drawable/bg_widget"
+   	    android:orientation="vertical"
+   	    android:padding="10dp"
+   	    >
+   	    <TextView 
+   	        android:id="@+id/tv_widget_title"
+   	        android:layout_height="wrap_content"
+   	        android:layout_width="wrap_content"
+   	        android:text="Note Title"
+   	        android:textSize="20sp"
+   	        android:textColor="@color/white"
+   	        android:layout_marginLeft="48dp"
+   	        android:textStyle="bold"
+   	        />
+   	    <RelativeLayout 
+   	        android:layout_width="match_parent"
+   	        android:layout_height="wrap_content"
+   	        android:orientation="horizontal"
+   	        android:padding="8dp"
+   	        >
+   	        <ImageView 
+   	            android:id="@+id/iv_widget_write"
+   	            android:layout_height="wrap_content"
+   	            android:layout_width="wrap_content"
+   	            android:src="@drawable/widget_write"
+   	            
+   	            />
+   	        <LinearLayout 
+   	            android:id="@+id/ll_arrow"
+   	            android:layout_width="wrap_content"
+   	            android:layout_height="wrap_content"
+   	            android:orientation="vertical"
+   	            android:layout_alignParentRight="true"
+   	            >
+   	            <ImageView 
+   	                android:id="@+id/iv_widget_up"
+   	                android:layout_width="wrap_content"
+   	                android:layout_height="wrap_content"
+   	                android:src="@drawable/widget_up"
+   	                />
+   	             <ImageView 
+   	                android:id="@+id/iv_widget_down"
+   	                android:layout_width="wrap_content"
+   	                android:layout_height="wrap_content"
+   	                android:src="@drawable/widget_down"
+   	                android:layout_marginTop="40dp"
+   	                />
+   	        </LinearLayout>
+   	         <TextView 
+   	            android:id="@+id/tv_widget_content"
+   	            android:layout_toRightOf="@id/iv_widget_write"
+   	            android:layout_toLeftOf="@id/ll_arrow"
+   	            android:layout_width="match_parent"
+   	            android:layout_height="wrap_content"
+   	            android:layout_centerHorizontal="true"
+   	            android:layout_marginLeft="8dp"
+   	            android:ellipsize="end"
+   	            android:text="阿道夫年开始地方开始对房价快速的减肥快速点击付款"
+   	            android:textColor="@color/white"
+   	            android:textSize="18sp"
+   	            />
+   	    </RelativeLayout>
+   	</LinearLayout>
+
+</LinearLayout>

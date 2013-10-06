@@ -18,6 +18,7 @@ public class EditNoteActivity extends BaseAcvitity {
 	private Note note;
 	private NoteEditAdapter adapter;
 	private int index;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -26,19 +27,13 @@ public class EditNoteActivity extends BaseAcvitity {
 		items = new ArrayList<Note>();
 		items = getIntent().getParcelableArrayListExtra("notes");
 		index = getIntent().getIntExtra("index", 0);
-		System.out.println("index==="+index);
+		System.out.println("index===" + index);
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
-		
-		flipCards=flipView.cards;
+		flipCards = flipView.cards;
 		adapter = new NoteEditAdapter(this, items);
 		adapter.setController(flipView);
 		flipView.setAdapter(adapter);
-//		flipView.setSelection(index-1);
-		if (index==0) {
-			flipView.setSelection(index);
-		} else {
-			flipView.setSelection(index-1);
-		}
+		flipView.setSelection(index);
 		setContentView(flipView);
 	}
 

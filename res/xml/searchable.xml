@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2010 ideasandroid
+   演示android系统浮动搜索框
+   欢迎访问http://www.ideasandroid.com
+   让程序开发不再那么神秘
+-->
+
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/app_name"
+    android:searchSettingsDescription="@string/app_name" 
+    android:includeInGlobalSearch="true" 
+    android:searchSuggestAuthority="org.espier.inotes" 
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
+    >
+</searchable>

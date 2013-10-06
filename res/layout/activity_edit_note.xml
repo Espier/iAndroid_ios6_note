@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
 		android:orientation="vertical"
         >
-         <org.espier.inotes.view.UINavigation 
+    	<org.espier.inotes.view.UINavigation 
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
        android:id="@+id/iv_bottom"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:background="@drawable/bg_edge_bottom_margin_thin"
+       android:src="@drawable/bg_edge_bottom_margin_thin"
        android:layout_alignParentBottom="true"
        />
     <LinearLayout 
@@ -85,38 +85,58 @@
        android:layout_height="wrap_content"
        android:orientation="horizontal"
        android:paddingLeft="40dp"
-       android:paddingRight="40dp"
        android:layout_above="@id/iv_bottom"
+       android:paddingTop="40dp"
        android:gravity="center_vertical"
        android:layout_marginBottom="10dp"
        >
-       <ImageView 
-           android:id="@+id/iv_left"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@drawable/ic_arrow_left"
-           />
-       <ImageView 
-            android:id="@+id/iv_action"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@drawable/ic_action"
-           android:layout_marginLeft="35dp"
-           />
-       <ImageView 
-            android:id="@+id/iv_remove"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@drawable/ic_remove"
-           android:layout_marginLeft="35dp"
-           /> 
-       <ImageView 
-            android:id="@+id/iv_right"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@drawable/ic_arrow_right"
-           android:layout_marginLeft="35dp"
-           />
+    	<LinearLayout 
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="0dp"
+    	    android:layout_weight="1"
+    	    >
+    	    <ImageView 
+	           android:id="@+id/iv_left"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/ic_arrow_left"
+	           />
+    	</LinearLayout>
+       <LinearLayout 
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="0dp"
+    	    android:layout_weight="1"
+    	    >
+	       <ImageView 
+	           android:id="@+id/iv_action"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/ic_action"
+	           />
+       </LinearLayout>
+        <LinearLayout 
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="0dp"
+    	    android:layout_weight="1"
+    	    >
+	       <include 
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           layout="@layout/remove"
+	           />
+       </LinearLayout>
+       <LinearLayout 
+            android:layout_height="wrap_content"
+    	    android:layout_width="0dp"
+    	    android:layout_weight="1"
+           >
+            <ImageView 
+	           android:id="@+id/iv_right"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:src="@drawable/ic_arrow_right"
+	           />
+       </LinearLayout>
    </LinearLayout> 
 
 </RelativeLayout>

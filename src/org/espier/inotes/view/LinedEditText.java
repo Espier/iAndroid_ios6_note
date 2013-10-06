@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 
 public class LinedEditText extends EditText {
@@ -21,7 +19,7 @@ public class LinedEditText extends EditText {
 		mRect = new Rect();
 		mPaint = new Paint();
 		mPaint.setStyle(Paint.Style.STROKE);
-		mPaint.setColor(0x800000FF);
+		mPaint.setColor(0x606e7f95);
 		dm = new DisplayMetrics();
 		((Activity) context).getWindowManager().getDefaultDisplay()
 				.getMetrics(dm);
