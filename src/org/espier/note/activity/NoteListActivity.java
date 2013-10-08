@@ -8,8 +8,8 @@ import org.espier.note.adapter.NoteAdapter;
 import org.espier.note.db.DatabaseHelper;
 import org.espier.note.model.Note;
 import org.espier.note.view.MyListView;
-import org.espier.note.view.UINavigation;
 import org.espier.note.view.MyListView.OnRefreshListener;
+import org.espier.note.view.UINavigation;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -53,6 +53,7 @@ public class NoteListActivity extends BaseAcvitity {
 		tvRight = (TextView) navigation.findViewById(R.id.tv_right);
 		tvLeft = (TextView) navigation.findViewById(R.id.tv_left);
 		tvTitle = (TextView) navigation.findViewById(R.id.tv_title);
+		tvTitle.setVisibility(View.VISIBLE);
 		tvLeft.setVisibility(View.GONE);
 		tvRight.setText("    +    ");
 

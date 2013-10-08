@@ -1,18 +1,23 @@
 package org.espier.note.adapter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.espier.note.R;
+import org.espier.note.activity.EditNoteActivity;
 import org.espier.note.activity.NoteListActivity;
 import org.espier.note.db.DatabaseHelper;
 import org.espier.note.model.Note;
 import org.espier.note.util.TimeUtils;
 import org.ocpsoft.prettytime.PrettyTime;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
@@ -279,6 +284,12 @@ public class NoteAdapter extends BaseAdapter {
 		public boolean onSingleTapUp(MotionEvent e) {
 			// TODO Auto-generated method stub
 			System.out.println("===onSingleTapUp");
+			Intent intent = new Intent(context, EditNoteActivity.class);
+			intent.putExtra("note", items.get(touchHolder.position));
+			intent.putParcelableArrayListExtra("notes",
+					(ArrayList<? extends Parcelable>) items);
+			intent.putExtra("index", touchHolder.position);
+			((Activity) context).startActivity(intent);
 			return super.onSingleTapUp(e);
 		}
 
