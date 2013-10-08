@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.espier.note"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <application android:label="@string/app_name" android:icon="@drawable/icon">
-        <activity android:name="EspierNote"
-                  android:label="@string/app_name">
+    package="org.espier.note"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="org.espier.note.activity.NoteListActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
+           <!--  <activity
+            android:name="org.espier.note.activity.TestProviderActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>  -->
+        <!-- <activity
+            android:name="org.espier.note.activity.DbTestActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>  -->
+        <activity 
+            android:name="org.espier.note.activity.EditNoteActivity"
+            >
+        </activity>
+         <activity 
+            android:name="org.espier.note.widget.WidgetActivity"
+            >
+            <intent-filter>  
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />  
+            </intent-filter> 
+        </activity>
+        <receiver android:name="org.espier.note.widget.NoteWidget">  
+            <intent-filter>  
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="org.espiser.inotes.weidgt.up"/>
+   				<action android:name="org.espiser.inotes.weidgt.down"/> 
+   				<action android:name="org.espiser.inotes.weidgt.write"/>
+            </intent-filter>  
+            <meta-data android:name="android.appwidget.provider"  
+                android:resource="@xml/note_wiget" />  
+        </receiver>
+        <provider 
+            android:name="org.espier.note.provider.NoteContentProvider"
+            android:authorities="org.espier.note" 
+            >
+        </provider>
+        <service android:name="org.espier.note.service.NoteService"></service>
+        <meta-data 
+            android:name="android.app.default_searchable" 
+            android:value="org.espier.note.activity.NoteListActivity" /> 
     </application>
-</manifest> 
+
+</manifest>

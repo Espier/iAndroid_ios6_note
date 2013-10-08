@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Notes</string>
+
+    <string name="app_name">Espier Notes</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="searchLabel">查询</string>
+    <string name="searchHint">请输入查询内容</string>
+    <string name="duration">300</string>
 </resources>
