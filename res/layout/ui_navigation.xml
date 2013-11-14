@@ -13,7 +13,7 @@
         android:layout_marginLeft="8dp"
         android:background="@drawable/btn_back_selector"
         android:gravity="center"
-        android:text="Back"
+        android:text="@string/back"
         android:layout_centerVertical="true"
         android:textColor="@color/white"
         android:visibility="visible"
@@ -21,6 +21,7 @@
         android:paddingLeft="12dp"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
+        android:textStyle="bold"
         />
 	<TextView 
 	    android:id="@+id/tv_title"
@@ -30,6 +31,8 @@
 	    android:textSize="20sp"
 	    android:textColor="@color/white"
 	    android:layout_centerInParent="true"
+	    android:visibility="invisible"
+	    android:textStyle="bold"
 	    />
 	<TextView 
 	    android:id="@+id/tv_right"
@@ -39,9 +42,10 @@
 	    android:layout_alignParentRight="true"
 	    android:background="@drawable/btn_header_right_selector" 
 	    android:gravity="center"
-	    android:text="Done"
+	    android:text="@string/done"
 	    android:textColor="@color/white"
 	    android:padding="6dp"
 	    android:layout_marginRight="10dp"
+	    android:textStyle="bold"
 	    />
 </RelativeLayout>

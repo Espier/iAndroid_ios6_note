@@ -8,16 +8,59 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@drawable/bg_search"
+	    android:orientation="horizontal"
 	    >
-	    <EditText 
-	        android:id="@+id/et_search"
-	        android:layout_width="match_parent"
+	    <RelativeLayout 
 	        android:layout_height="wrap_content"
-	        android:hint="Search"
-	        android:background="@color/gold"
+	        android:layout_width="0dp"
+	        android:layout_weight="8.5"
 	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="3dp"
-	        android:layout_marginRight="3dp"
+	        >
+	         <EditText 
+		        android:id="@+id/et_search"
+		        android:layout_width="match_parent"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="6dp"
+		        android:layout_marginRight="15dp"
+		        android:paddingLeft="38dp"
+		        android:paddingRight="38dp"
+		        android:singleLine="true"
+		        android:textSize="16sp"
+		        android:hint="@string/search_hint"
+		        android:background="@drawable/bg_search_edit"
+		        />
+	         <ImageView 
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:src="@drawable/icon_search"
+	             android:layout_centerVertical="true"
+	             android:layout_marginLeft="18dp"
+	             />
+	         <ImageView 
+	             android:id="@+id/iv_cancel"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:src="@drawable/search_cancel"
+	             android:layout_centerVertical="true"
+	             android:layout_marginRight="32dp"
+	             android:layout_alignParentRight="true"
+	             android:visibility="invisible"
+	             />
+	    </RelativeLayout>
+	   
+	    <TextView 
+	        android:id="@+id/tv_cancel"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1.5"
+	        android:text="@string/cancel"
+	        android:textColor="@color/white"
+	        android:textStyle="bold"
+	        android:gravity="center"
+	        android:layout_gravity="center_vertical"
+	        android:background="@drawable/btn_header_right_selector"
+	        android:layout_marginRight="5dp"
+	        
 	        />
 	</LinearLayout>
 	<ListView 

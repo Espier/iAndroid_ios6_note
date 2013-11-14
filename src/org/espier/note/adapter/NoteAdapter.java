@@ -13,16 +13,16 @@ import org.espier.note.util.TimeUtils;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -99,7 +99,9 @@ public class NoteAdapter extends BaseAdapter {
 		if (isNull) {
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-			params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+			params.addRule(RelativeLayout.CENTER_IN_PARENT,
+					RelativeLayout.TRUE);
+			holder.tvContent.setGravity(Gravity.CENTER);
 			holder.tvContent.setLayoutParams(params);
 			holder.tvTime.setVisibility(View.GONE);
 			holder.ivArrow.setVisibility(View.GONE);
@@ -168,16 +170,18 @@ public class NoteAdapter extends BaseAdapter {
 		// return true;
 		// }
 		// });
+		if (!isNull) {
+			convertView.setOnTouchListener(new OnTouchListener() {
 
-		convertView.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View view, MotionEvent ev) {
+					// TODO Auto-generated method stub
+					touchHolder = (ViewHolder) view.getTag();
+					return detector.onTouchEvent(ev);
+				}
+			});
+		}
 
-			@Override
-			public boolean onTouch(View view, MotionEvent ev) {
-				// TODO Auto-generated method stub
-				touchHolder = (ViewHolder) view.getTag();
-				return detector.onTouchEvent(ev);
-			}
-		});
 		// String time=items.get(position).getCreateTime().substring(0, 10);
 		return convertView;
 	}
@@ -217,6 +221,23 @@ public class NoteAdapter extends BaseAdapter {
 			// TODO Auto-generated method stub
 			System.out.println("===onFling");
 			touchHolder.tvDelete.setVisibility(View.VISIBLE);
+			touchHolder.tvDelete.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					databaseHelper.deleteNoteById(items.get(
+							touchHolder.position).getId());
+					items.remove(touchHolder.position);
+
+					((NoteListActivity) context).tvTitle.setText("Notes("
+							+ items.size() + ")");
+					if (items.size() == 0 || items == null) {
+						isNull = true;
+					}
+					notifyDataSetChanged();
+				}
+			});
 			return true;
 		}
 
@@ -224,36 +245,109 @@ public class NoteAdapter extends BaseAdapter {
 		public void onLongPress(MotionEvent e) {
 			// TODO Auto-generated method stub
 			System.out.println("gesture===onLongPress");
-			CharSequence[] alertItems = { "删除", "取消" };
-			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setItems(alertItems, new DialogInterface.OnClickListener() {
+//			CharSequence[] alertItems = { "删除", "取消" };
+//			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//			builder.setItems(alertItems, new DialogInterface.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					// TODO Auto-generated method stub
+//					if (which == 0) {
+//						System.out.println("id=="
+//								+ items.get(touchHolder.position).getId());
+//						boolean delete = databaseHelper.deleteNoteById(items
+//								.get(touchHolder.position).getId());
+//						// System.out.println("position=="+position+","+"delete=="+delete);
+//						items.remove(touchHolder.position);
+//						if (null == items || items.size() == 0) {
+//							isNull = true;
+//							items = ((NoteListActivity) context).getData();
+//							((NoteListActivity) context).adapter = new NoteAdapter(
+//									context, items, isNull);
+//							((NoteListActivity) context).listView
+//									.setAdapter(((NoteListActivity) context).adapter);
+//						}
+//						notifyDataSetChanged();
+//					} else if (which == 1) {
+//
+//					}
+//				}
+//			});
+//			builder.setTitle("确定要删除吗？");
+//			builder.show();
 
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					if (which == 0) {
-						System.out.println("id=="
-								+ items.get(touchHolder.position).getId());
-						boolean delete = databaseHelper.deleteNoteById(items
-								.get(touchHolder.position).getId());
-						// System.out.println("position=="+position+","+"delete=="+delete);
-						items.remove(touchHolder.position);
-						if (null == items || items.size() == 0) {
-							isNull = true;
-							items = ((NoteListActivity) context).getData();
-							((NoteListActivity) context).adapter = new NoteAdapter(
-									context, items, isNull);
-							((NoteListActivity) context).listView
-									.setAdapter(((NoteListActivity) context).adapter);
-						}
-						notifyDataSetChanged();
-					} else if (which == 1) {
+			// View view = inflater.inflate(R.layout.popup_menu, null);
+			// TextView tvDelete = (TextView) view
+			// .findViewById(R.id.tv_delete);
+			// TextView tvCancel = (TextView) view
+			// .findViewById(R.id.tv_cancel);
+			// RelativeLayout rl = (RelativeLayout) view
+			// .findViewById(R.id.rl_popup_menu);
+			// view.setFocusable(true);
+			// view.setFocusableInTouchMode(true);
+			// final PopupWindow popupWindow = new PopupWindow(view,
+			// LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+			// popupWindow.setFocusable(true);
+			// popupWindow.setBackgroundDrawable(new BitmapDrawable());
+			// popupWindow.setAnimationStyle(R.style.AnimationDialog);
+			// popupWindow.showAtLocation(((NoteListActivity)context).listView,
+			// Gravity.BOTTOM
+			// | Gravity.CENTER_HORIZONTAL, 0, 0);
+			// popupWindow.setOutsideTouchable(true);
+			// view.setOnTouchListener(new OnTouchListener() {
+			// @Override
+			// public boolean onTouch(View v, MotionEvent event) {
+			// // TODO Auto-generated method stub
+			// popupWindow.dismiss();
+			// return true;
+			// }
+			// });
+			// view.setOnKeyListener(new OnKeyListener() {
+			//
+			// @Override
+			// public boolean onKey(View v, int keyCode, KeyEvent event) {
+			// // TODO Auto-generated method stub
+			// System.out.println("==back");
+			// if (keyCode == KeyEvent.KEYCODE_BACK) {
+			//
+			// if (popupWindow != null || popupWindow.isShowing()) {
+			// popupWindow.dismiss();
+			// }
+			// }
+			// return false;
+			// }
+			// });
+			// tvDelete.setOnClickListener(new OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View v) {
+			// // TODO Auto-generated method stub
+			// boolean delete = databaseHelper.deleteNoteById(items
+			// .get(touchHolder.position).getId());
+			// //
+			// System.out.println("position=="+position+","+"delete=="+delete);
+			// items.remove(touchHolder.position);
+			// if (null == items || items.size() == 0) {
+			// isNull = true;
+			// items = ((NoteListActivity) context).getData();
+			// ((NoteListActivity) context).adapter = new NoteAdapter(
+			// context, items, isNull);
+			// ((NoteListActivity) context).listView
+			// .setAdapter(((NoteListActivity) context).adapter);
+			// }
+			// notifyDataSetChanged();
+			// popupWindow.dismiss();
+			// }
+			// });
+			// tvCancel.setOnClickListener(new OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View v) {
+			// // TODO Auto-generated method stub
+			// popupWindow.dismiss();
+			// }
+			// });
 
-					}
-				}
-			});
-			builder.setTitle("确定要删除吗？");
-			builder.show();
 			super.onLongPress(e);
 		}
 

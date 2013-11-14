@@ -27,17 +27,19 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class NoteListActivity extends BaseAcvitity {
 	private UINavigation navigation;
-	private TextView tvRight, tvLeft, tvTitle;
+	public TextView tvRight, tvLeft, tvTitle, tvCancel;
+	private ImageView ivCancel;
 	public MyListView listView;
 	private DatabaseHelper databaseHelper;
 	public NoteAdapter adapter, dialogAdapter;
-	private List<Note> items;
+	public List<Note> items;
 	private boolean isNull = false;
 	private EditText etSearch, etDialogSearch;
 	public Dialog baseDialog;
@@ -55,6 +57,8 @@ public class NoteListActivity extends BaseAcvitity {
 		tvTitle = (TextView) navigation.findViewById(R.id.tv_title);
 		tvTitle.setVisibility(View.VISIBLE);
 		tvLeft.setVisibility(View.GONE);
+		tvRight.setTextSize(20);
+		tvRight.setPadding(-2, -2, -2, -2);
 		tvRight.setText("    +    ");
 
 		listView = (MyListView) findViewById(R.id.listView);
@@ -70,6 +74,27 @@ public class NoteListActivity extends BaseAcvitity {
 					baseDialog = getDialog(NoteListActivity.this);
 					etDialogSearch.setHint("Search");
 					etDialogSearch.findFocus();
+					tvCancel.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							if (navigation.getVisibility() == View.GONE
+									|| etSearch.getVisibility() == View.INVISIBLE) {
+								navigation.setVisibility(View.VISIBLE);
+								etSearch.setVisibility(View.VISIBLE);
+								baseDialog.dismiss();
+							}
+						}
+					});
+					ivCancel.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							etDialogSearch.setText("");
+						}
+					});
 					etDialogSearch.addTextChangedListener(new TextWatcher() {
 
 						@Override
@@ -93,6 +118,11 @@ public class NoteListActivity extends BaseAcvitity {
 							lvDialog.setBackgroundResource(R.drawable.bg_body);
 							String keyWords = etDialogSearch.getText()
 									.toString();
+							if (!keyWords.equals(null) && keyWords != "") {
+								ivCancel.setVisibility(View.VISIBLE);
+							} else {
+								ivCancel.setVisibility(View.INVISIBLE);
+							}
 							List<Note> notes = databaseHelper
 									.searchNotes(keyWords);
 							for (int i = 0; i < notes.size(); i++) {
@@ -142,7 +172,8 @@ public class NoteListActivity extends BaseAcvitity {
 		if (null == items || items.size() == 0) {
 			isNull = true;
 		}
-		tvTitle.setText("Notes(" + count + ")");
+		String title = getResources().getString(R.string.title);
+		tvTitle.setText(title + "(" + count + ")");
 		System.out.println("mmmmmm");
 		adapter = new NoteAdapter(this, items, isNull);
 		listView.setAdapter(adapter);
@@ -160,9 +191,10 @@ public class NoteListActivity extends BaseAcvitity {
 			for (int i = 0; i < 10; i++) {
 				Note note = null;
 				if (i == 2) {
-					note = new Note(3, "无备忘录", "");
+					String no = getResources().getString(R.string.no_note);
+					note = new Note(3, no, 0, "");
 				} else {
-					note = new Note(i, "", "");
+					note = new Note(i, "", 0, "");
 				}
 				items.add(note);
 			}
@@ -186,6 +218,9 @@ public class NoteListActivity extends BaseAcvitity {
 		LinearLayout mLayout = (LinearLayout) mInflater.inflate(
 				R.layout.dialog_search, null);
 		etDialogSearch = (EditText) mLayout.findViewById(R.id.et_search);
+		tvCancel = (TextView) mLayout.findViewById(R.id.tv_cancel);
+
+		ivCancel = (ImageView) mLayout.findViewById(R.id.iv_cancel);
 		lvDialog = (ListView) mLayout.findViewById(R.id.lv_dialog);
 		lvDialog.setBackground(null);
 		baseDialog.getWindow().setContentView(mLayout, lp);
