@@ -46,7 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			int id=cursor.getInt(cursor.getColumnIndex("note_id"));
 			String content=cursor.getString(cursor.getColumnIndex("note_content"));
 			String createTime=cursor.getString(cursor.getColumnIndex("note_create_time"));
-			Note note=new Note(id, content, createTime);
+			int color = cursor.getInt(cursor.getColumnIndex("note_color"));
+			Note note = new Note(id, content, color, createTime);
 			notes.add(note);
 		}
 		cursor.close();
@@ -69,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		boolean isInsert=false;
 		ContentValues cv=new ContentValues();
 		cv.put("note_content", note.getContent());
+		cv.put("note_color", note.getColor());
 		cv.put("note_create_time", note.getCreateTime());
 		long note_id=db.insert(NoteCP.TABLE_NOTES, "note_id", cv);
 		if (note_id!=-1) {
@@ -84,6 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		ContentValues cv=new ContentValues();
 		cv.put("note_id", note.getId());
 		cv.put("note_content", note.getContent());
+		cv.put("note_color", note.getColor());
 		cv.put("note_create_time", note.getCreateTime());
 		int count=db.update(NoteCP.TABLE_NOTES, cv, "note_id=?", new String[]{note.getId()+""});
 		if (count>0) {
@@ -103,9 +106,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			int id = cursor.getInt(cursor.getColumnIndex("note_id"));
 			String content = cursor.getString(cursor
 					.getColumnIndex("note_content"));
+			int color = cursor.getInt(cursor.getColumnIndex("note_color"));
 			String createTime = cursor.getString(cursor
 					.getColumnIndex("note_create_time"));
-			Note note = new Note(id, content, createTime);
+			Note note = new Note(id, content, color, createTime);
 			notes.add(note);
 		}
 		cursor.close();

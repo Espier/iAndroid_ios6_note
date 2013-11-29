@@ -11,13 +11,14 @@ public class NoteCP {
 	public static String NOTE_ID = "note_id";
 	public static final String NOTE_CONTENT = "note_content";
 	public static final String NOTE_CREATE_TIME = "note_create_time";
-
+	public static final String NOTE_COLOR = "note_color";
 	public static final String SQL_CREATE_NOTES = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_NOTES + " (" + NOTE_ID
 			+ " INTEGER PRIMARY KEY autoincrement," + NOTE_CONTENT
-			+ " VARCHAR," + NOTE_CREATE_TIME + " VARCHAR" + ");";
+			+ " VARCHAR," + NOTE_COLOR + " INTEGER," + NOTE_CREATE_TIME
+			+ " VARCHAR" + ");";
 
-	public static final String AUTOHORITY = "org.espier.note";
+	public static final String AUTOHORITY = "org.espier.inotes";
 	public static final int ITEM = 1;
 	public static final int ITEM_ID = 2;
 

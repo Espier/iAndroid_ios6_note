@@ -142,7 +142,8 @@ public class NoteWidget extends AppWidgetProvider {
 			if (null != notes && notes.size() > 0) {
 				note = notes.get(i);
 			} else {
-				note = new Note(0, "无备忘录", 0, "");
+				String no =context.getResources().getString(R.string.no_note);
+				note = new Note(0, no, 0, "");
 			}
 			views.setImageViewResource(R.id.iv_widget_up,
 						R.drawable.widget_up_grey);

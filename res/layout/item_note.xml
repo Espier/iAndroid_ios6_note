@@ -5,12 +5,13 @@
     android:orientation="horizontal" 
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     >
     <TextView 
         android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:singleLine="true"
   		android:ellipsize="end"
   		android:maxWidth="140dp"
@@ -18,6 +19,8 @@
   		android:textSize="22sp"
   		android:textColor="@color/zong"
   		android:layout_centerVertical="true"
+  		android:paddingLeft="10dp"
+  		android:paddingRight="10dp"
         />
    
     <ImageView 
@@ -27,7 +30,6 @@
         android:background="@drawable/item_list_arrow"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
         />
      <TextView 
         android:id="@+id/tv_delete"

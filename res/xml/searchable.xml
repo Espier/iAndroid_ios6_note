@@ -10,7 +10,7 @@
     android:label="@string/app_name"
     android:searchSettingsDescription="@string/app_name" 
     android:includeInGlobalSearch="true" 
-    android:searchSuggestAuthority="org.espier.note" 
+    android:searchSuggestAuthority="org.espier.inotes" 
     android:searchSuggestIntentAction="android.intent.action.VIEW"
     >
 </searchable>

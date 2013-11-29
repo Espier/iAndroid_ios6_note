@@ -6,11 +6,13 @@ import android.os.Parcelable;
 public class Note implements Parcelable {
 	private int id;
 	private String content;
+	private int color;
 	private String createTime;
 
-	public Note(int id, String content, String createTime) {
+	public Note(int id, String content, int color, String createTime) {
 		this.id = id;
 		this.content = content;
+		this.color = color;
 		this.createTime = createTime;
 	}
 
@@ -28,6 +30,14 @@ public class Note implements Parcelable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 
 	public String getCreateTime() {
@@ -49,7 +59,9 @@ public class Note implements Parcelable {
 		// TODO Auto-generated method stub
 		dest.writeInt(id);
 		dest.writeString(content);
+		dest.writeInt(color);
 		dest.writeString(createTime);
+
 	}
 
 	public static final Parcelable.Creator<Note> CREATOR = new Creator() {
@@ -59,6 +71,7 @@ public class Note implements Parcelable {
 			// TODO Auto-generated method stub
 			// 必须按成员变量声明的顺序读取数据，不然会出现获取数据出错
 			Note note = new Note(source.readInt(), source.readString(),
+					source.readInt(),
 					source.readString());
 
 			return note;
