@@ -1,6 +1,7 @@
 package org.espier.note.util;
 
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -8,7 +9,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.Random;
+
+import org.espier.note.R;
+
+import android.content.Context;
 
 public class TimeUtils {
 	public static long ONEDAYMILLIS = 24 * 60 * 60 * 1000;
@@ -480,5 +484,36 @@ public class TimeUtils {
 		String year = Integer.toString(c.get(Calendar.YEAR));
 		return year + week;
 	}
-
+	
+	
+	public static String getReadableTime(String inTime,Context context){
+		String outTime="";
+		
+		try {
+//			System.out.println(inTime);
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date d1=df.parse(inTime);
+//			System.out.println("d1=="+d1.toString());
+			Date d2=new Date();
+//			System.out.println("d2=="+d2.toString());
+			long during=d2.getTime()-d1.getTime();
+			if (during<0) {
+				outTime="";
+				return outTime;
+			}else if (during<60*60*1000) {
+				String min=during/60/1000+"";
+				outTime=min+context.getResources().getText(R.string.minute);
+			}else if (during<24*60*60*1000) {
+				String hour=during/60/60/1000+"";
+				outTime=hour+context.getResources().getText(R.string.hour);
+			}else if (during>24*60*60*1000) {
+				DateFormat df1= new SimpleDateFormat("yyyy.MM.dd");
+				outTime=df1.format(d1);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return outTime;
+	}
 }

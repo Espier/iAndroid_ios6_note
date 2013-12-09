@@ -7,7 +7,7 @@
 	<string name="searchLabel">查询</string>
     <string name="searchHint">请输入查询内容</string>
     <string name="duration">300</string>
-    <string name="back">後退</string>
+    <string name="back">備忘錄</string>
     <string name="done">完成</string>
     <string name="search_hint">搜索</string>
     <string name="cancel">取消</string>
@@ -15,4 +15,7 @@
     <string name="menu_cancel">取            消</string>
     <string name="title">Notes</string>
     <string name="no_note">無備忘錄</string>
+    <string name="new_one_note">新建備忘錄</string>
+    <string name="minite">分鐘前</string>
+    <string name="hour">小時前</string>
 </resources>

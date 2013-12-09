@@ -15,7 +15,6 @@ import org.espier.note.util.TimeUtils;
 import org.espier.note.view.LinedEditText;
 import org.espier.note.view.MyLinearLayout;
 import org.espier.note.view.UINavigation;
-import org.ocpsoft.prettytime.PrettyTime;
 
 import android.app.Activity;
 import android.content.Context;
@@ -102,6 +101,7 @@ public class NoteEditAdapter extends BaseAdapter {
 					.findViewById(R.id.tv_left);
 			holder.tvRight = (TextView) holder.navigation
 					.findViewById(R.id.tv_right);
+			holder.tvTitle=(TextView)holder.navigation.findViewById(R.id.tv_title);
 			holder.llContainer = (MyLinearLayout) convertView
 					.findViewById(R.id.ll_container);
 			holder.llHeader = (LinearLayout) holder.llContainer
@@ -168,11 +168,14 @@ public class NoteEditAdapter extends BaseAdapter {
 		}
 		if (items == null) {
 			holder.llAction.setVisibility(View.GONE);
+			holder.tvTitle.setText(context.getResources().getText(R.string.new_one_note));
 			// holder.etContent.setText(items.get(position).getContent());
 			// Date date = TimeUtils.getDateByString("yyyy-MM-dd HH:mm:ss",
 			// new Date());
-			PrettyTime prettyTime = new PrettyTime();
-			holder.tvReadableTime.setText(prettyTime.format(new Date()));
+//			PrettyTime prettyTime = new PrettyTime();
+//			holder.tvReadableTime.setText(prettyTime.format(new Date()));
+			
+			holder.tvReadableTime.setText(TimeUtils.getReadableTime(TimeUtils.getStringDate(), context));
 			// String dateStr = DateFormat.getDateInstance(DateFormat.FULL)
 			// .format(new Date());
 			Date date = new Date();
@@ -182,11 +185,14 @@ public class NoteEditAdapter extends BaseAdapter {
 					+ TimeUtils.getTime());
 		} else {
 			controller.setViews(holder.ivLeft, holder.ivRight);
+			holder.tvTitle.setText(items.get(position).getContent());
 			holder.etContent.setText(items.get(position).getContent());
 			Date date = TimeUtils.getDateByString("yyyy-MM-dd HH:mm:ss", items
 					.get(position).getCreateTime());
-			PrettyTime prettyTime = new PrettyTime();
-			holder.tvReadableTime.setText(prettyTime.format(date));
+//			PrettyTime prettyTime = new PrettyTime();
+//			holder.tvReadableTime.setText(prettyTime.format(date));
+			holder.tvReadableTime.setText(TimeUtils.getReadableTime(items
+					.get(position).getCreateTime(), context));
 			String dateStr = DateFormat.getDateInstance(DateFormat.FULL)
 					.format(date);
 			if (isEN()) {
@@ -438,6 +444,7 @@ public class NoteEditAdapter extends BaseAdapter {
 		LinearLayout llHeader;
 		LinearLayout llAction;
 		TextView tvLeft;
+		TextView tvTitle;
 		TextView tvRight;
 		ImageView ivRight;
 		ImageView ivLeft;

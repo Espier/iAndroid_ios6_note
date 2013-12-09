@@ -55,8 +55,9 @@ public class NoteWidget extends AppWidgetProvider {
 						R.drawable.widget_down_grey);
 				views.setImageViewResource(R.id.iv_widget_up,
 						R.drawable.widget_up);
-				views.setTextViewText(R.id.tv_widget_content, "i==" + index
-						+ notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_content, 
+						notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_title, notes.get(index).getContent());
 				setViews(context, index, views);
 				System.out.println("1115555555555555==" + index);
 				manager.updateAppWidget(new ComponentName(context,
@@ -65,8 +66,9 @@ public class NoteWidget extends AppWidgetProvider {
 			} else {
 				views.setImageViewResource(R.id.iv_widget_down,
 						R.drawable.widget_down);
-				views.setTextViewText(R.id.tv_widget_content, "i==" + index
-						+ notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_content, 
+						 notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_title, notes.get(index).getContent());
 				setViews(context, index, views);
 				manager.updateAppWidget(new ComponentName(context,
 						NoteWidget.class), views);
@@ -79,8 +81,8 @@ public class NoteWidget extends AppWidgetProvider {
 			if (index > 0) {
 				views.setImageViewResource(R.id.iv_widget_up,
 						R.drawable.widget_up);
-				views.setTextViewText(R.id.tv_widget_content, "i==" + index
-						+ notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_content,notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_title, notes.get(index).getContent());
 				setViews(context, index, views);
 				manager.updateAppWidget(new ComponentName(context,
 						NoteWidget.class), views);
@@ -89,8 +91,8 @@ public class NoteWidget extends AppWidgetProvider {
 						R.drawable.widget_up_grey);
 				views.setImageViewResource(R.id.iv_widget_down,
 						R.drawable.widget_down);
-				views.setTextViewText(R.id.tv_widget_content, "i==" + index
-						+ notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_content, notes.get(index).getContent());
+				views.setTextViewText(R.id.tv_widget_title, notes.get(index).getContent());
 				setViews(context, index, views);
 				manager.updateAppWidget(new ComponentName(context,
 						NoteWidget.class), views);

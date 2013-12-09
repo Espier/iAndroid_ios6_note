@@ -17,7 +17,7 @@
         android:layout_centerVertical="true"
         android:textColor="@color/white"
         android:visibility="visible"
-        android:paddingRight="6dp"
+        android:paddingRight="12dp"
         android:paddingLeft="12dp"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
@@ -26,12 +26,14 @@
 	<TextView 
 	    android:id="@+id/tv_title"
 	    android:layout_height="wrap_content"
-	    android:layout_width="wrap_content"
+	    android:layout_width="100dp"
+	    android:ellipsize="end"
+	    android:singleLine="true"
 	    android:text="Note(00)"
 	    android:textSize="20sp"
 	    android:textColor="@color/white"
 	    android:layout_centerInParent="true"
-	    android:visibility="invisible"
+	    android:visibility="visible"
 	    android:textStyle="bold"
 	    />
 	<TextView 
@@ -44,7 +46,10 @@
 	    android:gravity="center"
 	    android:text="@string/done"
 	    android:textColor="@color/white"
-	    android:padding="6dp"
+	    android:paddingTop="6dp"
+	    android:paddingBottom="6dp"
+	    android:paddingLeft="12dp"
+	    android:paddingRight="12dp"
 	    android:layout_marginRight="10dp"
 	    android:textStyle="bold"
 	    />

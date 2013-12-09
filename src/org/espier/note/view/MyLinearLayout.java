@@ -92,6 +92,7 @@ public class MyLinearLayout extends LinearLayout {
 			System.out.println("up===========");
 			if (state != REFRESHING && state != LOADING) {
 				if (state == DONE) {
+					changeHeaderViewByState();
 				}
 				if (state == PULL_To_REFRESH) {
 					state = DONE;
@@ -119,7 +120,6 @@ public class MyLinearLayout extends LinearLayout {
 			isBack = false;
 			break;
 		case MotionEvent.ACTION_MOVE:
-			System.out.println("move===========");
 			getParent().requestDisallowInterceptTouchEvent(true);
 			int tempY = (int) event.getY();
 			if (!isRecored && firstItemIndex == 0) {
@@ -137,6 +137,7 @@ public class MyLinearLayout extends LinearLayout {
 						Log.v("@@@@@@", "changeHeaderViewByState() 这是第  " + i++
 								+ "步" + 5);
 					} else if (tempY - startY <= 0) {
+						System.out.println("===up");
 						state = DONE;
 						changeHeaderViewByState();
 						Log.v("@@@@@@",
@@ -195,6 +196,7 @@ public class MyLinearLayout extends LinearLayout {
 	}
 
 	private void changeHeaderViewByState() {
+		System.out.println("state=="+state);
 		switch (state) {
 		case RELEASE_To_REFRESH:
 

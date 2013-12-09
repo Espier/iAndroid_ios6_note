@@ -84,7 +84,7 @@ public class MyListView extends ListView implements OnScrollListener {
 		reverseAnimation.setFillAfter(true);
 
 		state = DONE;
-		isRefreshable = false;
+		isRefreshable = true;
 	}
 
 	@Override
@@ -141,8 +141,10 @@ public class MyListView extends ListView implements OnScrollListener {
 					startY = tempY;
 					Log.v("@@@@@@", "ACTION_MOVE 这是第  "+i+++"步" +4);
 				}
-				if (state != REFRESHING && isRecored && state != LOADING) {
-					if (state == RELEASE_To_REFRESH) {
+//				if (state != REFRESHING && isRecored && state != LOADING) {
+//					if (state == RELEASE_To_REFRESH) {
+				if (true) {
+					if (true) {
 						setSelection(0);
 						if (((tempY - startY) / RATIO < headContentHeight)
 								&& (tempY - startY) > 0) {
@@ -202,6 +204,7 @@ public class MyListView extends ListView implements OnScrollListener {
 	}
 
 	private void changeHeaderViewByState() {
+		System.out.println("state="+state);
 		switch (state) {
 		case RELEASE_To_REFRESH:
 			
@@ -220,7 +223,6 @@ public class MyListView extends ListView implements OnScrollListener {
 			break;
 		case DONE:
 			headView.setPadding(0, -1 * headContentHeight, 0, 0);
-			
 			Log.v("@@@@@@", "DONE 这是第  "+i+++"步" +"已经加载完毕- DONE ");
 			break;
 		}

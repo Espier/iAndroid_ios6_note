@@ -72,7 +72,7 @@ public class NoteListActivity extends BaseAcvitity {
 					etSearch.setVisibility(View.INVISIBLE);
 					navigation.setVisibility(View.GONE);
 					baseDialog = getDialog(NoteListActivity.this);
-					etDialogSearch.setHint("Search");
+					etDialogSearch.setHint(getResources().getString(R.string.search_hint));
 					etDialogSearch.findFocus();
 					tvCancel.setOnClickListener(new OnClickListener() {
 
