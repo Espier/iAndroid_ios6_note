@@ -39,6 +39,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aphidmobile.flip.FlipViewController;
 
@@ -253,19 +254,27 @@ public class NoteEditAdapter extends BaseAdapter {
 				String date = TimeUtils.getSimpleDateFormat(
 						"yyyy-MM-dd HH:mm:ss", new Date());
 				if (items == null) {
-					Note note = new Note(1, holder.etContent.getText()
-							.toString(), selectColor, date);
-					databaseHelper.insertNote(note);
+					if (!holder.etContent.getText().toString().equals("")) {
+						Note note = new Note(1, holder.etContent.getText()
+								.toString(), selectColor, date);
+						databaseHelper.insertNote(note);
+						Intent intent = new Intent(context, NoteListActivity.class);
+						((Activity) context).setResult(1, intent);
+						((Activity) context).finish();
+					}else {
+						Toast.makeText(context, R.string.no_empty, Toast.LENGTH_SHORT).show();
+					}
 				} else {
 					Note note = items.get(position);
 					note.setColor(selectColor);
 					note.setContent(holder.etContent.getText().toString());
 					note.setCreateTime(date);
 					databaseHelper.updateNoteById(note);
+					Intent intent = new Intent(context, NoteListActivity.class);
+					((Activity) context).setResult(1, intent);
+					((Activity) context).finish();
 				}
-				Intent intent = new Intent(context, NoteListActivity.class);
-				((Activity) context).setResult(1, intent);
-				((Activity) context).finish();
+				
 			}
 		});
 		holder.tvLeft.setOnClickListener(new OnClickListener() {
@@ -340,35 +349,7 @@ public class NoteEditAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// AlertDialog.Builder builder = new
-				// AlertDialog.Builder(context);
-				// builder.setTitle("提示");
-				// builder.setMessage("确定删除吗？");
-				// builder.setPositiveButton("确定",
-				// new DialogInterface.OnClickListener() {
-				//
-				// @Override
-				// public void onClick(DialogInterface arg0, int arg1) {
-				// // TODO Auto-generated method stub
-				// databaseHelper.deleteNoteById(items.get(
-				// position).getId());
-				// // animation = AnimationUtils.loadAnimation(
-				// // context, R.anim.anim_remove);
-				// // animation.setDuration(300);
-				// // holder.ivRomoveTop.startAnimation(animation);
-				// Intent intent = new Intent(context,
-				// NoteListActivity.class);
-				// ((Activity) context).setResult(1, intent);
-				// ((Activity) context).finish();
-				// }
-				// });
-				// builder.setNeutralButton("取消", null);
-				// builder.show();
-				// MenuPopupWindow popupWindow = new MenuPopupWindow(context,
-				// items.get(position));
-				// popupWindow.showAtLocation(holder.llContainer, Gravity.BOTTOM
-				// | Gravity.CENTER_HORIZONTAL, 0, 0);
+				
 				View view = inflater.inflate(R.layout.popup_menu, null);
 				TextView tvDelete = (TextView) view
 						.findViewById(R.id.tv_delete);

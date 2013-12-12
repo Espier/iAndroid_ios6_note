@@ -12,10 +12,12 @@
     <string name="cancel">取消</string>
     <string name="menu_delete">删除备忘录</string>
     <string name="menu_cancel">取            消</string>
-    <string name="title">Notes</string>
+    <string name="title">备忘录</string>
     <string name="new_note">新建</string>
     <string name="no_note">无备忘录</string>
     <string name="new_one_note">新建备忘录</string>
     <string name="minute">分钟前</string>
     <string name="hour">小时前</string>
+    <string name="delete">删除</string>
+    <string name="no_empty">请输入内容</string>
 </resources>

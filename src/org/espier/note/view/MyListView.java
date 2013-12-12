@@ -141,10 +141,8 @@ public class MyListView extends ListView implements OnScrollListener {
 					startY = tempY;
 					Log.v("@@@@@@", "ACTION_MOVE 这是第  "+i+++"步" +4);
 				}
-//				if (state != REFRESHING && isRecored && state != LOADING) {
-//					if (state == RELEASE_To_REFRESH) {
-				if (true) {
-					if (true) {
+				if (state != REFRESHING && isRecored && state != LOADING) {
+					if (state == RELEASE_To_REFRESH) {
 						setSelection(0);
 						if (((tempY - startY) / RATIO < headContentHeight)
 								&& (tempY - startY) > 0) {
@@ -185,6 +183,11 @@ public class MyListView extends ListView implements OnScrollListener {
 							changeHeaderViewByState();
 							Log.v("@@@@@@", "ACTION_MOVE DONE changeHeaderViewByState " +
 									"这是第  "+i+++"步后" +9);
+						}else if (tempY - startY <= 0) {
+							state = DONE;
+							changeHeaderViewByState();
+							Log.v("@@@@@@", "ACTION_MOVE RELEASE_To_REFRESH 2  changeHeaderViewByState " +
+									"这是第  "+i+++"步" +6);
 						}
 					}
 					if (state == PULL_To_REFRESH) {
