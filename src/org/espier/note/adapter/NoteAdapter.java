@@ -180,35 +180,38 @@ public class NoteAdapter extends BaseAdapter {
 				float distanceX, float distanceY) {
 			// TODO Auto-generated method stub
 			System.out.println("===onScroll");
-			if (oldHolder!=null&&oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
-				oldHolder.tvDelete.setVisibility(View.GONE);
-			}
-			
-			if (oldHolder!=null&&oldHolder.position==currentHolder.position) {
-				if (oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
+			if (distanceX>20) {
+				if (oldHolder!=null&&oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
 					oldHolder.tvDelete.setVisibility(View.GONE);
-				}else {
-					oldHolder.tvDelete.setVisibility(View.VISIBLE);
 				}
+				
+				if (oldHolder!=null&&oldHolder.position==currentHolder.position) {
+					if (oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
+						oldHolder.tvDelete.setVisibility(View.GONE);
+					}else {
+						oldHolder.tvDelete.setVisibility(View.VISIBLE);
+					}
+				}
+				
+				oldHolder=currentHolder;
+				
+				currentHolder.tvDelete.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						databaseHelper.deleteNoteById(items.get(
+								currentHolder.position).getId());
+						items.remove(currentHolder.position);
+						((NoteListActivity) context).tvTitle.setText("Notes("
+								+ items.size() + ")");
+						if (items.size() == 0 || items == null) {
+							isNull = true;
+						}
+						notifyDataSetChanged();
+					}
+				});
 			}
 			
-			oldHolder=currentHolder;
-			
-			currentHolder.tvDelete.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					databaseHelper.deleteNoteById(items.get(
-							currentHolder.position).getId());
-					items.remove(currentHolder.position);
-					((NoteListActivity) context).tvTitle.setText("Notes("
-							+ items.size() + ")");
-					if (items.size() == 0 || items == null) {
-						isNull = true;
-					}
-					notifyDataSetChanged();
-				}
-			});
 			return super.onScroll(e1, e2, distanceX, distanceY);
 		}
 

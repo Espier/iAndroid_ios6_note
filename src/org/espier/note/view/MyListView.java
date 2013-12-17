@@ -141,6 +141,15 @@ public class MyListView extends ListView implements OnScrollListener {
 					startY = tempY;
 					Log.v("@@@@@@", "ACTION_MOVE 这是第  "+i+++"步" +4);
 				}
+				//========隐藏搜索框
+				if (tempY - startY <= 0) {
+					headView.setPadding(0, -1 * headContentHeight+(tempY - startY) / RATIO, 0, 0);
+					if ((startY - tempY) > headContentHeight) {
+						state = DONE;
+					}
+					changeHeaderViewByState();
+				}
+				//========隐藏搜索框
 				if (state != REFRESHING && isRecored && state != LOADING) {
 					if (state == RELEASE_To_REFRESH) {
 						setSelection(0);
