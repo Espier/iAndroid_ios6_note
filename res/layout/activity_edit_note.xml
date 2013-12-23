@@ -5,7 +5,7 @@
     android:orientation="vertical" 
     android:background="@drawable/bg_body_edit"
     >
-    <LinearLayout 
+   	 <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 		android:orientation="vertical"
@@ -69,6 +69,7 @@
    	    android:paddingLeft="40dp"
    	    android:background="@null"
    	    android:textColor="@color/text_brown"
+   	    android:paddingBottom="70dp"
    	    />
     </org.espier.note.view.MyLinearLayout >
     </LinearLayout>
@@ -99,7 +100,7 @@
 	           android:id="@+id/iv_left"
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
-	           android:src="@drawable/ic_arrow_left"
+	           android:src="@drawable/btn_arrow_left_selector"
 	           />
     	</LinearLayout>
        <LinearLayout 
@@ -111,7 +112,7 @@
 	           android:id="@+id/iv_action"
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
-	           android:src="@drawable/ic_action"
+	           android:src="@drawable/btn_action_selector"
 	           />
        </LinearLayout>
         <LinearLayout 
@@ -119,10 +120,11 @@
     	    android:layout_width="0dp"
     	    android:layout_weight="1"
     	    >
-	       <include 
+	       <ImageView 
+	           android:id="@+id/iv_remove"
 	           android:layout_width="wrap_content"
 	           android:layout_height="wrap_content"
-	           layout="@layout/remove"
+	           android:src="@drawable/btn_remove_selector"
 	           />
        </LinearLayout>
        <LinearLayout 

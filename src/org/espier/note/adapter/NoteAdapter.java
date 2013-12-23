@@ -156,6 +156,18 @@ public class NoteAdapter extends BaseAdapter {
 		public boolean onDown(MotionEvent e) {
 			// TODO Auto-generated method stub
 			System.out.println("===onDown");
+			if (null!=oldHolder) {
+				if (oldHolder.tvDelete.getVisibility()==View.VISIBLE||currentHolder.tvDelete.getVisibility()==View.VISIBLE) {
+					oldHolder.tvDelete.setVisibility(View.GONE);
+					currentHolder.tvDelete.setVisibility(View.GONE);
+					oldHolder.ivArrow.setVisibility(View.VISIBLE);
+					currentHolder.ivArrow.setVisibility(View.VISIBLE);
+					((NoteListActivity)NoteAdapter.this.context).tvRight.setText("    +    ");
+					((NoteListActivity)NoteAdapter.this.context).tvRight.setTextSize(20);
+					((NoteListActivity)NoteAdapter.this.context).tvRight.setPadding(-2, -2, -2, -2);
+					return false;
+				}
+			}
 			return true;
 		}
 
@@ -164,7 +176,7 @@ public class NoteAdapter extends BaseAdapter {
 				float velocityY) {
 			// TODO Auto-generated method stub
 			System.out.println("===onFling");
-			
+				
 			return true;
 		}
 
@@ -180,17 +192,49 @@ public class NoteAdapter extends BaseAdapter {
 				float distanceX, float distanceY) {
 			// TODO Auto-generated method stub
 			System.out.println("===onScroll");
-			if (distanceX>20) {
+			if (distanceX>30) {
 				if (oldHolder!=null&&oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
 					oldHolder.tvDelete.setVisibility(View.GONE);
+					oldHolder.ivArrow.setVisibility(View.INVISIBLE);
 				}
 				
 				if (oldHolder!=null&&oldHolder.position==currentHolder.position) {
 					if (oldHolder.tvDelete.getVisibility()==View.VISIBLE) {
 						oldHolder.tvDelete.setVisibility(View.GONE);
+						oldHolder.ivArrow.setVisibility(View.VISIBLE);
 					}else {
 						oldHolder.tvDelete.setVisibility(View.VISIBLE);
-					}
+						oldHolder.ivArrow.setVisibility(View.INVISIBLE);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setText(R.string.cancel);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setTextSize(16);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setPadding(16, 0, 16, 0);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								if (oldHolder.tvDelete.getVisibility()==View.VISIBLE||currentHolder.tvDelete.getVisibility()==View.VISIBLE) {
+									oldHolder.tvDelete.setVisibility(View.GONE);
+									currentHolder.tvDelete.setVisibility(View.GONE);
+									oldHolder.ivArrow.setVisibility(View.VISIBLE);
+									currentHolder.ivArrow.setVisibility(View.VISIBLE);
+									((NoteListActivity)NoteAdapter.this.context).tvRight.setText("    +    ");
+									((NoteListActivity)NoteAdapter.this.context).tvRight.setTextSize(20);
+									((NoteListActivity)NoteAdapter.this.context).tvRight.setPadding(-2, -2, -2, -2);
+									((NoteListActivity)NoteAdapter.this.context).tvRight.setOnClickListener(new OnClickListener() {
+										
+										@Override
+										public void onClick(View v) {
+											// TODO Auto-generated method stub
+											Intent intent = new Intent(NoteAdapter.this.context,
+													EditNoteActivity.class);
+											NoteAdapter.this.context.startActivity(intent);
+										}
+									});
+								}
+							}
+						});
+					} 
 				}
 				
 				oldHolder=currentHolder;
@@ -202,7 +246,8 @@ public class NoteAdapter extends BaseAdapter {
 						databaseHelper.deleteNoteById(items.get(
 								currentHolder.position).getId());
 						items.remove(currentHolder.position);
-						((NoteListActivity) context).tvTitle.setText("Notes("
+						String title = context.getResources().getString(R.string.title);
+						((NoteListActivity) context).tvTitle.setText(title+"("
 								+ items.size() + ")");
 						if (items.size() == 0 || items == null) {
 							isNull = true;
@@ -211,6 +256,7 @@ public class NoteAdapter extends BaseAdapter {
 					}
 				});
 			}
+			
 			
 			return super.onScroll(e1, e2, distanceX, distanceY);
 		}

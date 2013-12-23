@@ -16,7 +16,7 @@
     <string name="title">Notes</string>
     <string name="no_note">No One</string>
     <string name="new_one_note">New Note</string>
-    <string name="minite">minutes ago</string>
+    <string name="minute">minutes ago</string>
     <string name="hour">hours ago</string>
     <string name="delete">Delete</string>
     <string name="no_empty">Please write something</string>

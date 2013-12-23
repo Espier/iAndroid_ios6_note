@@ -107,8 +107,8 @@ public class NoteEditAdapter extends BaseAdapter {
 					.findViewById(R.id.ll_container);
 			holder.llHeader = (LinearLayout) holder.llContainer
 					.findViewById(R.id.ll_header);
-			holder.llRemove = (LinearLayout) convertView
-					.findViewById(R.id.ll_remove);
+			holder.ivRemove = (ImageView) convertView
+					.findViewById(R.id.iv_remove);
 			holder.ivRomoveTop = (ImageView) convertView
 					.findViewById(R.id.iv_remove_top);
 			holder.llAction = (LinearLayout) convertView
@@ -170,6 +170,9 @@ public class NoteEditAdapter extends BaseAdapter {
 		if (items == null) {
 			holder.llAction.setVisibility(View.GONE);
 			holder.tvTitle.setText(context.getResources().getText(R.string.new_one_note));
+			holder.tvRight.setTextSize(20);
+			holder.tvRight.setPadding(-2, -2, -2, -2);
+			holder.tvRight.setText("    +    ");
 			// holder.etContent.setText(items.get(position).getContent());
 			// Date date = TimeUtils.getDateByString("yyyy-MM-dd HH:mm:ss",
 			// new Date());
@@ -180,8 +183,14 @@ public class NoteEditAdapter extends BaseAdapter {
 			// String dateStr = DateFormat.getDateInstance(DateFormat.FULL)
 			// .format(new Date());
 			Date date = new Date();
-			holder.tvDate.setText(date.getMonth() + 1 + "月" + date.getDate()
-					+ "日");
+			if (isEN()) {
+				SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd",
+						Locale.ENGLISH);
+				holder.tvDate.setText(sdf.format(date));
+			} else {
+				holder.tvDate.setText(date.getMonth() + 1 + "月"
+						+ date.getDate() + "日");
+			}
 			holder.tvTime.setText(TimeUtils.getHour() + ":"
 					+ TimeUtils.getTime());
 		} else {
@@ -197,7 +206,7 @@ public class NoteEditAdapter extends BaseAdapter {
 			String dateStr = DateFormat.getDateInstance(DateFormat.FULL)
 					.format(date);
 			if (isEN()) {
-				SimpleDateFormat sdf = new SimpleDateFormat("MM dd",
+				SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd",
 						Locale.ENGLISH);
 				holder.tvDate.setText(sdf.format(date));
 			} else {
@@ -345,7 +354,7 @@ public class NoteEditAdapter extends BaseAdapter {
 					}
 
 				});
-		holder.llRemove.setOnClickListener(new OnClickListener() {
+		holder.ivRemove.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -427,10 +436,10 @@ public class NoteEditAdapter extends BaseAdapter {
 		TextView tvLeft;
 		TextView tvTitle;
 		TextView tvRight;
-		ImageView ivRight;
+		ImageView ivRight; 
 		ImageView ivLeft;
 		ImageView ivAction;
-		LinearLayout llRemove;
+		ImageView ivRemove;
 		ImageView ivRomoveTop;
 		RadioGroup rgColors;
 		RadioButton rbBrown;

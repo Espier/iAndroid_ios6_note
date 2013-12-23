@@ -16,7 +16,7 @@
     <string name="title">備忘錄</string>
     <string name="no_note">無備忘錄</string>
     <string name="new_one_note">新建備忘錄</string>
-    <string name="minite">分鐘前</string>
+    <string name="minute">分鐘前</string>
     <string name="hour">小時前</string>
     <string name="delete">刪除</string>
     <string name="no_empty">請輸入內容</string>

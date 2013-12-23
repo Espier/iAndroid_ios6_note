@@ -20,7 +20,9 @@
 		    android:layout_height="match_parent"
 		    android:divider="#606e7f95"
 		    android:dividerHeight="2px"
+		    android:cacheColorHint="#00000000"
 		    android:background="@drawable/bg_body"
+		    android:fadingEdge="none"
 		    />
 	</LinearLayout>
 	<ImageView 
