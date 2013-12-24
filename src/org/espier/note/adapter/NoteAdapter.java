@@ -9,6 +9,7 @@ import org.espier.note.activity.EditNoteActivity;
 import org.espier.note.activity.NoteListActivity;
 import org.espier.note.db.DatabaseHelper;
 import org.espier.note.model.Note;
+import org.espier.note.util.ColorsUtils;
 import org.espier.note.util.TimeUtils;
 
 import android.app.Activity;
@@ -93,6 +94,8 @@ public class NoteAdapter extends BaseAdapter {
 			holder.tvDelete.setVisibility(View.GONE);
 		}
 		holder.tvContent.setText(items.get(position).getContent());
+		System.out.println("color===="+items.get(position).getColor());
+		holder.tvContent.setTextColor(context.getResources().getColorStateList(ColorsUtils.getColor(items.get(position).getColor())));
 //		PrettyTime prettyTime = new PrettyTime();
 		Date date = TimeUtils.getDateByString("yyyy-MM-dd HH:mm:ss",
 				items.get(position).getCreateTime());
@@ -252,6 +255,19 @@ public class NoteAdapter extends BaseAdapter {
 						if (items.size() == 0 || items == null) {
 							isNull = true;
 						}
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setText("    +    ");
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setTextSize(20);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setPadding(-2, -2, -2, -2);
+						((NoteListActivity)NoteAdapter.this.context).tvRight.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(NoteAdapter.this.context,
+										EditNoteActivity.class);
+								NoteAdapter.this.context.startActivity(intent);
+							}
+						});
 						notifyDataSetChanged();
 					}
 				});
