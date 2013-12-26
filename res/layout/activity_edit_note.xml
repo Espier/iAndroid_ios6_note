@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
 		android:orientation="vertical"
         >
-    	<org.espier.note.view.UINavigation 
+    	<org.espier.note6.view.UINavigation 
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_edge_top_margin_thin"
         />
-    <org.espier.note.view.MyLinearLayout 
+    <org.espier.note6.view.MyLinearLayout 
         android:id="@+id/ll_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,7 +61,7 @@
             android:textColor="@color/zong"
             />
     </RelativeLayout>
-    <org.espier.note.view.LinedEditText
+    <org.espier.note6.view.LinedEditText
    	    android:id="@+id/let_content"
    	    android:layout_width="match_parent"
    	    android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
    	    android:textColor="@color/text_brown"
    	    android:paddingBottom="70dp"
    	    />
-    </org.espier.note.view.MyLinearLayout >
+    </org.espier.note6.view.MyLinearLayout >
     </LinearLayout>
    <ImageView 
        android:id="@+id/iv_bottom"

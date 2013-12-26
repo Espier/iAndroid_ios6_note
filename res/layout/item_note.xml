@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
   		android:ellipsize="end"
-  		android:maxWidth="170dp"
+  		android:maxWidth="150dp"
   		android:text="士大夫撒旦法撒旦法士大夫士大夫公司"
   		android:textSize="22sp"
   		android:textColor="@color/zong"

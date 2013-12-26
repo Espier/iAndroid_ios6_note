@@ -2,5 +2,5 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
 	android:minWidth="288dp" android:minHeight="144dp"
 	android:updatePeriodMillis="86400000" android:initialLayout="@layout/widget"
-	android:configure="org.espier.note.widget.WidgetActivity">
+	android:configure="org.espier.note6.widget.WidgetActivity">
 </appwidget-provider>

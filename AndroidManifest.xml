@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.espier.note.activity.NoteListActivity"
+            android:name="org.espier.note6.activity.NoteListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,17 +44,17 @@
             </intent-filter>
         </activity>  -->
         <activity 
-            android:name="org.espier.note.activity.EditNoteActivity"
+            android:name="org.espier.note6.activity.EditNoteActivity"
             >
         </activity>
          <activity 
-            android:name="org.espier.note.widget.WidgetActivity"
+            android:name="org.espier.note6.widget.WidgetActivity"
             >
             <intent-filter>  
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />  
             </intent-filter> 
         </activity>
-        <receiver android:name="org.espier.note.widget.NoteWidget">  
+        <receiver android:name="org.espier.note6.widget.NoteWidget">  
             <intent-filter>  
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="org.espiser.inotes.weidgt.up"/>
@@ -66,11 +66,11 @@
                 android:resource="@xml/note_wiget" />  
         </receiver>
         <provider 
-            android:name="org.espier.note.provider.NoteContentProvider"
+            android:name="org.espier.note6.provider.NoteContentProvider"
             android:authorities="org.espier.note" 
             >
         </provider>
-        <service android:name="org.espier.note.service.NoteService"></service>
+        <service android:name="org.espier.note6.service.NoteService"></service>
         <meta-data 
             android:name="android.app.default_searchable" 
             android:value="org.espier.note.activity.NoteListActivity" /> 
